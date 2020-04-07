@@ -18,14 +18,16 @@ $result = mysqli_query($conn, $sql);
 	window.history.forward();
 	function noBack() { window.history.back(); }
 </SCRIPT>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <link href="css/font-awesome.min.css" rel="stylesheet" >
+    <script src="script/jquery-3.4.1.min.js"></script>
     <script src="script/jquery.smartmarquee.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="script/bootstrap.min.js" ></script>
     <style>
-    
+    @font-face {
+   font-family: Montserrat;
+   src: url(fonts/Montserrat-Regular.ttf);
+}
     body, html {
     height:100%; /* ADD this */
 }
@@ -433,13 +435,13 @@ margin-top: 30px;
 
 $(document).ready(function(){
         $(".example").smartmarquee({
-            duration:1000,
+            duration:2000,
             loop:true,
-            interval:100,
+            interval:1000,
             axis:"vertical",
         });
     });
         </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+<script src="script/particles.min.js"></script>
 </body>
 </html>

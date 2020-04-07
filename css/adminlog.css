@@ -192,3 +192,7 @@ a:hover{
     text-decoration: none;
     color: #57b846 !important;
 }
+@font-face{
+    font-family:Montserrat;
+    src: url(fonts/Montserrat-Regular.ttf);
+  }
