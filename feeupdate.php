@@ -60,7 +60,7 @@ echo $_SESSION['msg'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Fee Collector</title>
     <style>
  html{
          height: 100%;
@@ -160,8 +160,10 @@ echo $_SESSION['msg'];
                     <div class="col-sm-4">
                      <select name="sem"  class="form-control" id="">
                          <option value="init" selected disabled>Select Semester</option>
-                         <option value="1">Semester 1</option>
-                         <option value="2">Semester 2</option>
+                         <?php for($i=1;$i<=6;$i++)
+                                echo "<option value=\"$i\">Semester $i</option>";
+                         ?>
+                        
                      </select>
                     </div>
                 </div>
@@ -169,7 +171,7 @@ echo $_SESSION['msg'];
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Amount</label>
                     <div class="col-sm-4">
-                    <select name="amount" class="form-control" id="">
+                    <select name="amount" class="form-control" >
                         <option value="15750">15750</option>
                         <option value="16750">16750</option>
                     </select>
@@ -178,8 +180,8 @@ echo $_SESSION['msg'];
                 <div class="form-group row">
                     <label for="" class="col-sm-4 col-form-label">Paid</label>
                     <div class="col-sm-4">
-                        <select name="mode" class="form-control" id="">
-                            <option value="cash">By Cash</option>
+                        <select name="mode" class="form-control">
+                            <option value="Cash">By Cash</option>
                         </select>
                         </div>
                 </div>

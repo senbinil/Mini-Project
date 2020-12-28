@@ -24,7 +24,7 @@ echo $_SESSION['staff'];
     <script src="script/jQuery-3.4.1.min.js"></script>
     <script src="script/bootstrap.bundle.min.js" ></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" >
-    <title>Document</title>
+    <title>Staff Enrollment</title>
     <style>
    @font-face{
       font-family:Montserrat;
@@ -86,20 +86,17 @@ header{
 
 <div class="container-fluid">
     <h3 class="text-center">Staff Enrollment</h3>
-    <form  class="my-3 " action="staffen.php" method="POST">
+    <form  class="my-3 " action="staff_post.php" method="POST">
         <div class="row" >
             <h4 class="col-sm-12">Application Details:</h4><br>
-            <label for="" class="col-form-label col-sm-2"> Number:</label>
-            <div class="col-sm-2">
-                <input type="text" name="app_no" class="form-control" required>
-            </div>
+            
             <label for="" class="col-form-label col-sm-2">Form Number:</label>
             <div class="col-sm-2">
-                <input type="text"  name="frm_no" class="form-control">
+                <input type="text"  name="frm_no" class="form-control" maxlength="4" autocomplete="off">
         </div>
         <label for="" class="col-form-label col-sm-2">Applied on :</label>
             <div class="col-sm-2">
-                <input type="text" placeholder="DD/MM/YYYY" name="app_date" class="form-control" required>
+                <input type="text" placeholder="DD/MM/YYYY" name="app_date" class="form-control" required autocomplete="off">
         </div>
         
 
@@ -112,12 +109,12 @@ header{
                <div class="row">
                 <label for=""class="col-form-label col-sm-2">Employee Name:</label>
                 <div class=" col-sm-3">
-                    <input type="text"  name="emp_name" class="form-control" required>
+                    <input type="text"  name="emp_name" class="form-control" autocomplete="off"  required>
                 </div>
 
                 <label for="dob" class="col-sm-2 col-form-label my-1">Birth Date:</label>
                 <div class="col-sm-2 my-1">
-                    <input type="text" placeholder="DD/MM/YYYY" name="dob" class="form-control" required>
+                    <input type="text" placeholder="DD/MM/YYYY" name="dob" class="form-control" autocomplete="off" required>
                 </div>
                 <label for="dob" class="col-sm-1 col-form-label my-1">Gender:</label>
                 <div class="col-sm-2 my-1">
@@ -126,7 +123,7 @@ header{
                 </div>
               <label for="" class="col-form-label col-sm-2">Nationality:</label>
               <div class="col-sm-2">
-                <select name="nation" class="form-control" id="">
+                <select name="nation" class="form-control" >
                     <option value="init" selected disabled>Select nationality</option>
                     <option value="Indian">Indian</option>
                 </select>
@@ -134,9 +131,12 @@ header{
 
               <label for="" class="col-form-label col-sm-2">Category:</label>
               <div class="col-sm-2">
-                <select name="cat" class="form-control" id="" required>
+                <select name="cat" class="form-control"  required>
                     <option value="init" selected disabled>Select Category</option>
-                    <option value="General">General</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Muslims">Muslims</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Other">Other</option>
                 </select>
               </div>  
               <label for="" class="col-form-label col-sm-2">Martial Status:</label>
@@ -162,31 +162,30 @@ header{
               
               <label for="dob" class="col-sm-2 col-form-label my-1">Mobile:</label>
               <div class="col-sm-2 my-1">
-                  <input type="text" name="mob" class="form-control" required>
+                  <input type="text" name="mob" class="form-control" onkeypress="return onlyNumberKey(event)"  maxlength="10" minlength="10" autocomplete="off" required>
               </div>
               
               <label for="dob" class="col-sm-2 col-form-label my-1">E-mail:</label>
               <div class="col-sm-2 my-1">
-                  <input type="email" name="email" class="form-control" required>
+                  <input type="email" name="email" class="form-control" autocomplete="off" required>
               </div>
               
               <label for="dob" class="col-sm-2 col-form-label my-1">Blood Group:</label>
               <div class="col-sm-2  my-1">
                 <select name="blod" class="form-control" required id="">
                     <option value="init" selected disabled>Select Blood Group</option>
-                    <option value="A">A</option>
-                    <option value="A+">A+</option>
-                    <option value="B">B</option>
-                    <option value="B-">B-</option>
+                    <?php $blood_group=array('A+','A-','B+','B-','O+','O-','AB+','AB-');
+                    foreach($blood_group as $val)
+                    echo "<option value=\"$val\">$val</option>" ?>
                 </select>              </div>
               
               <label for="" class="col-form-label col-sm-2">Current Address:</label>
                     <div class="col-sm-5">
-                        <textarea name="caddress" class=" form-control"  required></textarea>
+                        <textarea name="caddress" class=" form-control" autocomplete="off"  required></textarea>
                     </div>
                     <label for="" class="col-form-label col-sm-2">Home  Address:</label>
                     <div class="col-sm-4">
-                       <textarea name="paddress" class="form-control"  required></textarea>
+                       <textarea name="paddress" class="form-control"  autocomplete="off" required></textarea>
                     </div>
                </div>
                
@@ -195,18 +194,20 @@ header{
         </div>
         
                <h3 class="col-sm-12">Qualification</h3>
-               <label for="" class="col-form-label col-sm-2">Professional:</label>
+               <label for="" class="col-form-label col-sm-2">Profession:</label>
                <div class="col-sm-2">
-                   <input type="text" name="pro" class="form-control" required>
-               </div>
+                    <select name="pro" class="form-control" >
+                        <option value="Teacher">Teacher</option>
+                    </select>
+            </div>
                <label for="" class="col-form-label col-sm-2">Education:</label>
                <div class="col-sm-3">
-                   <input type="text" name="edu" class="form-control" required>
+                   <input type="text" name="edu" class="form-control" autocomplete="off" required>
                </div>
                <div class="col-sm-12">
                <label for="" class="col-form-label">Specialized Subjects:</label>
                <div class="col-sm-4">
-                   <textarea name="spec" class="form-control" id="" required ></textarea>
+                   <textarea name="spec" class="form-control" id="" autocomplete="off" required ></textarea>
                </div>
             </div>
        </div>
@@ -218,37 +219,46 @@ header{
         <label for="" class="col-form-label col-sm-1">Emp.Type:</label>
         <div class="col-sm-2">
             <select name="emp_type" class="form-control" required id="">
-                <option value="Full">Full Time</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+
             </select>
         </div>
         <label for="" class="col-form-label col-sm-2">Designation:</label>
         <div class="col-sm-3">
            <select name="desig" class="form-control" required id="">
                <option value="Lecturer"> Lecturer</option>
+               <option value="Professor"> Professor</option>
+               <option value="Guard">Guard</option>
+               <option value="Cleaner">Cleaner</option>
+               <option value="Office Staff">Office Staff</option>
+
            </select>
         </div>
         <label for="" class="col-form-label col-sm-1">Joining on:</label>
         <div class="col-sm-3">
-            <input type="text"  name="j_date" placeholder="DD/MM/YYYY" class="form-control">
+            <input type="text"  name="j_date" placeholder="DD/MM/YYYY" autocomplete="off" class="form-control">
         </div>
         <label for="" class="col-form-label col-sm-1 my-1">Shift:</label>
         <div class="col-sm-2 my-1">
             <select name="shift" class="form-control" id="" required>
-                <option value="init">Morning</option>
+                <option value="Normal">Normal</option>
+                <option value="Morining">Morning</option>
+                <option value="Afternoon">Afternoon</option>
             </select>
         </div>
         <label for="" class="col-form-label col-sm-2 my-1">Salary:</label>
         <div class="col-sm-2 my-1">
-            <input type="text" name="salary" class="form-control" required>
+            <input type="text" name="salary" class="form-control" onkeypress="return onlyNumberKey(event)" autocomplete="off" required>
         </div>
        </div>
        <hr class="my-4">
        <h4 class="my-2">Account Details</h4>
 
        <div class="row">
-           <label for="acno" class="col-form-label col-sm-2">Account Number:</label>
+           <label for="acno" class="col-form-label col-sm-2">Account Number: </label>
            <div class="col-sm-3">
-               <input type="text" name="acc_no" class="form-control" required>
+               <input type="text" name="acc_no" class="form-control" onkeypress="return onlyNumberKey(event)" maxlength="30" autocomplete="off" required>
            </div>
            <label for="acno" class="col-form-label col-sm-2">Bank Name:</label>
             <div class="col-sm-2">
@@ -262,7 +272,7 @@ header{
             <label for="acno" class="col-form-label col-sm-1">IFSC:</label>
 
             <div class="col-sm-2">
-                <input type="text" name="ifsc" class="form-control" required>
+                <input type="text" name="ifsc" class="form-control" autocomplete="off" maxlength="11" required>
             </div>
        </div>
        <hr class="my-3">
@@ -274,6 +284,17 @@ header{
 
 
 </body>
+<script>
+ function onlyNumberKey(evt) { 
+          
+          // Only ASCII charactar in that range allowed 
+          var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+          if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+              return false; 
+          return true; 
+      } 
+
+</script>
 </html>
 
 

@@ -1,5 +1,6 @@
 <?php
-
+if(!isset($_SESSION))
+session_start();
 require('dbconnect.php');
 $ad=$_SESSION['admin'];
 $sql="select * from studentenroll where admin_no=$ad";
@@ -23,7 +24,7 @@ else
     
 </style>
  <span class="result  text-center my-3"><h4>Result <span class="text-danger"><?php  if(!$_SESSION['msg'])echo "Not Found"; else echo $_SESSION['msg'];  ?></span></h4></span>
-<form action="#"method="POST"  class="mb-5">
+<form action="stud.php"method="POST"  class="mb-5">
  <div class="row mx-1 out mt-5  my-3">
         
 <label for="" class="col-sm-2 col-form-label">Admission No:</label>
@@ -81,7 +82,9 @@ else
 <label for="" class="col-sm-2 col-form-label">
     <?php
     if($_SESSION['msg']){
+    global $ugcode;
     $ugcode=$row['ug_course'];
+  
     $sqlug="select course_name from ugcourse where course_id=$ugcode ";
     $res=mysqli_query($conn,$sqlug);
     $ug=mysqli_fetch_assoc($res);
@@ -104,8 +107,9 @@ else
 <center><span class="bg-info"><input type="submit" name="update"  class="btn btn-primary btn-md" value="Submit"></span></center>
 </form>
 <?php
-if(isset($_SESSION['msg']))
-unset($_SESSION['msg']);
+//if(isset($_SESSION['msg']))
+//unset($_SESSION['msg']);
+echo $ugcode;
 
 
 if(isset($_POST['update'])){
@@ -123,13 +127,13 @@ if(isset($_POST['update'])){
     $mail=$_POST['email'];
     $sem=$_POST['sem'];
     $phone=$_POST['phone'];
-    $sqlup="update studentenroll set fname='$fname',lname='$lname',blood_group='$blod',address='$add',state='$state',city='$city',zip_code=$zip,gender='$gen',guard_fname='$gfname',guard_lname='$glname',gphone=$phone,semester=$sem ,e_mail='$mail' where admin_no=$id and ug_course=$ugcode ";
+    $sqlup="update studentenroll set fname='$fname',lname='$lname',blood_group='$blod',address='$add',state='$state',city='$city',zip_code=$zip,gender='$gen',guard_fname='$gfname',guard_lname='$glname',gphone=$phone,semester=$sem ,e_mail='$mail' where admin_no=$ad ";
     if(mysqli_query($conn,$sqlup))
     {
-    $_SESSION['update']="<script> alert(\"Info Changed\");window.location.replace(\"global.php\");
-    </script>";
-    var_dump($_SESSION['update']);
-    //header("location:global.php");
+      $_SESSION['update']="<script> alert(\"Info Changed\");window.location.replace(\"global.php\");
+      </script>";
+      var_dump($_SESSION['update']);
+   //header("location:index.php");
     }
     else
     echo "Error updating record: " . mysqli_error($conn);
@@ -138,15 +142,6 @@ if(isset($_POST['update'])){
 
 }
 else
-
-echo "none";
-
-
-
-
-
-
-
 
 
 mysqli_close($conn);

@@ -1,7 +1,7 @@
 <?php
 require('dbconnect.php');
 
-$sql="select sug_id,email_id,content from suggest  ";
+$sql="select sug_id,email_id,content from suggest";
 
 
 ?>
@@ -25,17 +25,14 @@ $sql="select sug_id,email_id,content from suggest  ";
       font-family:Montserrat;
       src: url(fonts/Montserrat-Regular.ttf);
     }
-body, html {
-    height:100%; /* ADD this */
-}
+
 body{
        
        font-family: 'Montserrat',sans-serif;
-       background-image: url("img/suggestion.png");
+       
        background-repeat: no-repeat;
        background-attachment: fixed;
        background-size: cover;
-       color: white;
       
    }
 header{
@@ -55,13 +52,11 @@ header{
  
 
 }
-.subcontent{
-    text-align: center;
-}
+
 </style>
 </head>
 <body>
-    <header class="bg-dark">
+    <header class="bg-dark ">
         <span class="hash"><i class="fa fa-inbox" aria-hidden="true"></i>
         </span>Suggestion  Inbox
     </header>
@@ -86,55 +81,54 @@ header{
 <br>
 <div class="container-fluid">
     <div class="row mb-3">
-    <h3 class="col-sm-4">Suggestion Box: </h3>
-    <span class="col-sm-4">
-    <button class="btn btn-success">Delete 10 Message</button></span>
-    <span class="col-sm-4"><button class="btn btn-success">Empty inbox</button></span>
+    <h3 class="col-md-4 col-sm-12 ">Suggestion Box: </h3>
+    <span class="col-md-4 col-sm-12">
+    <button class="btn btn-success" onclick="del_inbox()">Delete 10 Message</button></span><br> <br>
+    <!--<span class="col-md-4 col-sm-12"><button class="btn btn-success">Empty inbox</button></span>-->
     </div>
-    <div class="content mb-2">
-       <div class="row" align="center">
-           <span class="col-sm-3 btn btn-light">Suggestion ID</span>
-           <span class="col-sm-3 btn btn-light">Email-ID</span>
-           <span class="col-sm-3 btn btn-light">Message</span>
-           <span class="col-sm-3 btn btn-light">Action</span>
-        </div>
+</span>
+    <div class="table-responsive-sm">
+       <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+           <th scope="col"><span class=" ">Suggestion ID</span></th>
+           <th scope="col"><span class="">Email ID</span></th>          
+           <th scope="col"><span class=" ">Message</span></th>     
+           <th scope="col"><span class="">Action</span></th> 
+           </tr>  
+         </thead>
+         <tbody>
         <?php
          $query=mysqli_query($conn,$sql)or die(mysqli_error($conn));
          while($row=mysqli_fetch_array(($query))){
-             echo "<div class=\"row text-center my-3\">";
-             echo "<span class=\"col-sm-3\">".$row['sug_id']."</span>";
-             echo "<span class=\"col-sm-3\">".$row['email_id']."</span>";
-             echo "<span class=\"col-sm-3\">".$row['content']."</span>";
-             echo "<button class=\"btn btn-warning text-white\" onclick=\"return del(".$row['sug_id'].")\">Delete";
-             echo "</div>";
+             echo "<tr>";
+             echo "<th scope=\"row\">".$row['sug_id']."</th>";
+             echo "<td >".$row['email_id']."</td>";
+             echo "<td>".$row['content']."</td>";
+             echo "<td><button class=\"btn btn-danger text-white\" onclick=\"return del(".$row['sug_id'].")\">Delete</td>";
+             echo "</tr>";
          }
-     $conn->close();
+     $conn->close(); 
         ?>
-      <!--  <div class="row text-center mb-1">
-               <span class="col-sm-4">12465</span>
-               <span class="col-sm-4">dsgfdhh@gmail.dom</span>
-               <span class="col-sm-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione doloribus eius ipsa et nobis assumenda dolorum autem impedit, necessitatibus sed fugiat quam, veniam laudantium reprehenderit dolorem dolores itaque corporis aliquid.</span>
-            </div>
-            <div class="row">
-                <span class="col-sm-4">12465</span>
-                <span class="col-sm-4">dsgfdhh@gmail.dom</span>
-                <span class="col-sm-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione doloribus eius ipsa et nobis assumenda dolorum autem impedit, necessitatibus sed fugiat quam, veniam laudantium reprehenderit dolorem dolores itaque corporis aliquid.</span>
-             </div>
-        -->
-        
+      
+             </tbody>
+    </table>
     </div>
-</div>
+    </div>
+    
 <script>
 function del(id){
-    if(confirm("Are you sure you want to delete this message?")==true)
+    if(confirm("Are you sure you want to delete this message?"))
     window.location="delmsg.php?del="+id;
     else
     return false;
 }
-
-
-
+function del_inbox(){
+if(confirm("Are you sure you want to delete last 10 message from inbox?"))
+{ 
+    window.location="delmsg.php?del_in=true";
+}
+}
 </script>
-
 </body>
 </html>

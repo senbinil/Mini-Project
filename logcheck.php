@@ -18,13 +18,14 @@ if ($result->num_rows > 0) {
     //while($row = $result->fetch_assoc()) {\
         $_SESSION['stat']="success";
         $_SESSION['log']=1;
+        unset($_SESSION['stat']);
       //  echo "id: " . $row["admin_id"]. " - Name: " . $row["username"]. " " . $row["password"]." Email:". $row['email_id'] ."<br>";
        header("Location:adminhome.php");
 
     }
 
 else {
-   $_SESSION['stat'] ="username error";
+   $_SESSION['stat'] ="username error or password error";
    $_SESSION['log']="";
    header("Location:adminlog.php");
    

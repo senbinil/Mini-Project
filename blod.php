@@ -18,7 +18,7 @@ while($row=mysqli_fetch_array($query)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Blood Bank</title>
     <style>
     
     body,html
@@ -42,10 +42,7 @@ while($row=mysqli_fetch_array($query)){
      width: 200px;
      
    }
-    .result{
-        height:fit-content;
-        border-radius: 25px;
-    }
+
     @font-face{
       font-family:Montserrat;
       src: url(fonts/Montserrat-Regular.ttf);
@@ -74,7 +71,7 @@ while($row=mysqli_fetch_array($query)){
             </li>
            
             <li class="nav-item">
-              <a class="nav-link " href="about.php" tabindex="-1">Contact</a>
+              <a class="nav-link " href="about.php#contactme" tabindex="-1">Contact</a>
             </li>
           </ul>
        
@@ -88,40 +85,41 @@ while($row=mysqli_fetch_array($query)){
             <div class="card">
                 <div class="card-body">
                 <h3 class="card-title">
-                    <p class="lead mx-2 text-danger " >* Stricty for medical emergency . If  improper usage of this service found illegal actions will be taken</p>
+                    <p class="lead mx-2 text-danger " >* Stricty for medical emergency . If  improper usage of this service found legal actions will be taken</p>
                 </h3>
                 <div class="card-text container-fluid mt-5" >
                     <form action="blod.php" class="form-inline column" >
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="input" class="col-md-5">Enter  Blood Group:&nbsp;</label>
-                                <input type="text" name="blood" class="form-control col-md-3" maxlength="2" required><br>
+                                <input type="text" name="blood" class="form-control col-md-3" maxlength="3" required><br>
                                 <input type="submit"  value="Search" class="btn btn-primary  mx-4">
                             </div>
                          
                         </div>
                     </form>
-                    <div class="result  mt-4">
-                      <div class="row">
-                        <label for="res" class="col-sm-12">Result</label>
-                        <label for="name" class="col-sm-4" style="font-size: xx-large;">Name</label>
-                        <label for="sem" class="col-sm-4" style="font-size: xx-large;">Semester</label>
-                        <label for="sem" class="col-sm-4" style="font-size: xx-large;">Course</label>
-
-                        <?php
+                    <div class="table-reponsive  mt-4">
+                      <table class="table">
+                        <tr>
+                        <th  scope="row">Result</th>
+                        <th  scope="row">Semester</th>
+                        <th  scope="row">Course</th>
+                            </tr>
+                            <tbody>
+                            <?php
 if(isset($_GET['blood'])){
   $blod=$_GET['blood'];
   $sql="select fname,lname,semester , ug_course from studentenroll where blood_group='$blod'";
  
   $query=mysqli_query($conn,$sql)or die(mysqli_error($conn));
   while($row=mysqli_fetch_array($query)){
-      echo "<label class=\"col-sm-4 text-danger\">".$row['fname']." ".$row['lname']."</label>";
-      echo "<label class=\"col-sm-4 text-danger\">".$row['semester']."</label>";
+      echo "<tr><td>".$row['fname']." ".$row['lname']."</td>";
+      echo "<td >".$row['semester']."</td>";
       $cs=$row['ug_course'];
       $sql2="select course_name from ugcourse where course_id=$cs";
       $query2=mysqli_query($conn,$sql2)or die(mysqli_error($conn));
       $row2=mysqli_fetch_array($query2);
-      echo "<label class=\"col-sm-4 text-danger\">".$row2['course_name']."</label>";
+      echo "<td >".$row2['course_name']."</td></tr>";
 
 
 
@@ -131,6 +129,8 @@ if(isset($_GET['blood'])){
   echo "  ";
 
 ?>
+                  </tbody>
+</table>
                       </div>
                       <br>
                       <p class="lead contact">In case match found please get in touch with college office regarding student availablity
