@@ -18,7 +18,7 @@ $row=mysqli_fetch_assoc($res);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $row['emp_name'];?></title>
     <link href="css/font-awesome.min.css" rel="stylesheet" >
     <script src="script/jQuery-3.4.1.min.js"></script>
     <script src="script/bootstrap.bundle.min.js" ></script>
@@ -52,7 +52,6 @@ $row=mysqli_fetch_assoc($res);
                     <li class="nav-item username dropdown active  bg-light mx-4 my-1">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user mx-2"></i><span><?php echo $row['emp_name'];?></span> </a>
                     <div class="dropdown-menu">
-                        <
                             <a href="pologout.php" class="dropdown-item">Logout</a>
                         
                     </div>
@@ -63,10 +62,10 @@ $row=mysqli_fetch_assoc($res);
     </nav>
     
     <div class="content">
-        <div class="container">
-            <h4 class="my-3">Profile Info:</h4>
+        <div class="container bg-secondary text-white">
+            <h4 class="my-3 pt-4">Profile Info:</h4>
             <hr>
-            <div class="row">
+            <div class="row ">
                 <label for="" class="col-sm-2 col-form-label">Employee ID:</label>
                  <label for="" class="col-sm-2 col-form-label"><?php echo $row['emp_id'];?></label>
                  <label for="" class="col-sm-2 col-form-label">Name:</label>
@@ -74,10 +73,12 @@ $row=mysqli_fetch_assoc($res);
                  <label for="" class="col-sm-2 col-form-label">Mobile:</label>
                  <label for="" class="col-sm-2 col-form-label"><?php echo $row['mobile'];?></label>
                  <label for="" class="col-sm-2 col-form-label">Email:</label>
-                 <label for="" class="col-sm-2 col-form-label"><?php echo $row['email'];?></label>
+                 <label for="" class="col-md-2 col-form-label"><?php echo $row['email'];?></label>
+                 </div>
+                 <div class="row ">
                  <label for="" class="col-sm-2 col-form-label">Address:</label>
                  <label for="" class="col-sm-2 col-form-label"><?php echo $row['caddress'];?></label>
-                 <label for="" class="col-sm-2 col-form-label">Proffession:</label>
+                 <label for="" class="col-sm-2 col-form-label">Profession:</label>
                  <label for="" class="col-sm-2 col-form-label"><?php echo $row['pro'];?></label>
                  <label for="" class="col-sm-2 col-form-label">Education:</label>
                  <label for="" class="col-sm-2 col-form-label"><?php echo $row['education'];?></label>
@@ -111,24 +112,28 @@ $row=mysqli_fetch_assoc($res);
             
 ?>
             <h5 class="my-3">Salary Credited Details</h5>
-            <div class="row">
+            <div class="row container">
                 <label for="" class="col-form-label col-sm-3">Last Salary credited details:</label>
                 <label for="" class="col-sm-5 bg-info text-white"><?php if(isset($rows)){ echo $rows['pay_id']." ".$rows['month']." "." ". $rows['pay_time'];} else echo "";?></label>
             </div>
-            <div class="row my-3 bg-dark text-white">
+            <div class=" my-3 table-responsive">
             
-                    <label for="" class="col-sm-3">Payment Id</label>
-                    <label for="" class="col-sm-3"> Salary</label>
-                    <label for="" class="col-sm-3">Month</label>
-                    <label for="" class="col-sm-3">Payment Time</label>
-
-    </div>
-<?php
+                    <table class="table">
+                    <thead class="bg-light text-black">
+                    <tr>
+                    <th  scope="col">Payment Id</th>
+                    <th scope="col"> Salary</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Payment Time</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-white">
+                    <?php
 
 if(mysqli_num_rows($res2)>0)
             {
                 while($row2=mysqli_fetch_assoc($res2)){
-                    echo "<div class =\"row my-2\"><span class=\"col-sm-3\">".$row2['pay_id']."</span>"."<span class=\"col-sm-3\">".$row2['sal']."</span>"."<span class=\"col-sm-3\">".$row2['month']."</span>"."<span class=\"col-sm-3\">".$row2['pay_time']."</span></div>";
+                    echo "<tr><th scope=\"row\">".$row2['pay_id']."</th>"."<td>".$row2['sal']."</td>"."<td>".$row2['month']."</td>"."<td>".$row2['pay_time']."</td></tr>";
                 }
             }
             else
@@ -136,8 +141,12 @@ if(mysqli_num_rows($res2)>0)
 
 
 
-?>
-               
+?>     
+                    </tbody>
+                    </table>
+
+    </div>
+  
         </div>
     </div>
 </body>

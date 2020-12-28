@@ -1,11 +1,9 @@
 <?php
 session_start();
-$_SESSION['name']="";
 require("dbconnect.php");
 if(isset($_POST['log'])){
     $id=$_POST['empid'];
     $phone=$_POST['phone'];
-   // $_SESSION['name']=$id;
     $_SESSION['phone']=$phone;
     $sql="select * from staffenroll where emp_id=$id and mobile=$phone";
     $res=mysqli_query($conn,$sql);
@@ -17,6 +15,9 @@ if(isset($_POST['log'])){
         $acc=$row['acc_no'];
         $_SESSION['name']=$id;
         $_SESSION['salstat']="<script>confirm(\"User Found Please Procced\");</script>";
+        $j_month=$row['j_date'];  
+        $new=(int)$j_month[3].$j_month[4]; 
+        $new--;
 
         
     }else
@@ -48,7 +49,7 @@ echo $_SESSION['salstat'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Salary Center</title>
     <style>
          header{
         position: sticky;;
@@ -100,11 +101,11 @@ echo $_SESSION['salstat'];
         <div class="row my-2">
             <label for="" class="col-form-label col-sm-2">Employee ID:</label>
             <div class="col-sm-3">
-                <input type="text" name="empid" class="form-control" required placeholder="Employee ID">
+                <input type="text" name="empid" class="form-control" autocomplete="off" required placeholder="Employee ID">
             </div>
             <label for="" class="col-form-label col-sm-2">Phone No:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="phone" required placeholder="Phone Number">
+                <input type="text" class="form-control" name="phone" autocomplete="off" required placeholder="Phone Number">
             </div>
         </div>
         <center><input type="submit" class="btn btn-info my-3"  name="log" value="Check"></center>
@@ -113,7 +114,11 @@ echo $_SESSION['salstat'];
         <div class="row my-2">
             <label for="" class="col-form-label col-sm-2">Employee Name:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="empname" value="<?php  if(isset($name))echo $name;?>"  required>
+                <input type="text" class="form-control" name="empname" value="<?php  if(isset($name))echo $name;  
+                  
+                    ?>"
+                     
+                      required>
             </div>
             <label for="" class="col-form-label col-sm-2">Account No:</label>
             <div class="col-sm-3">
@@ -127,31 +132,29 @@ echo $_SESSION['salstat'];
             </div>
             <label for="" class="col-form-label col-sm-2"> Monthly Pay:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="salary" value="<?php if(isset($sal))echo $sal;?>" required>
+                <input type="text" class="form-control" name="salary" value="<?php if(isset($sal))echo $sal; ?>" required>
             </div>
         </div>
         <div class="row my-2">
             <label for="" class="col-form-label col-sm-2"> Month:</label>
             <div class="col-sm-3">
             <select name="month" class="form-control" id="">
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
+            <?php $month=array('January','February','March','April','May','June','July','August','September','October','November','December') ;
+                 
+                for($i=0;$i<12;$i++){
+                    $status=($new==$i)? "selected":"";
+                echo "<option $status value=\"$month[$i]\">$month[$i]</option>";
+              
+               
+                }?>
             </select>
         </div>
             <label for="" class="col-form-label col-sm-2"> Year:</label>
             <div class="col-sm-3">
                 <select name="yrs" class="form-control" id="">
-                    <option value="2020" selected>2020</option>
+                <?php $year=date('Y');
+                echo " <option value=\"$year\">$year</option>"?>
+                ?>
                 </select>
         </div>
         </div>
@@ -166,6 +169,7 @@ echo $_SESSION['salstat'];
 </body>
 </html>
 <?php
+echo $month[0];
 $name="";
 $sal="";
 if(isset($_SESSION['salstat']))

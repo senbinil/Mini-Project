@@ -92,7 +92,7 @@ margin-bottom:100px;}
     <div class="carousel-inner">
         <div class="carousel-item active">
            <div class="content bg-primary w-100 text-white d-block" style="height:200px;">
-               <p class="lead text-center" style="font-size:60px; padding-top: 30px;" >Welcome to our College </p>
+               <p class="lead text-center" style="font-size:60px; padding-top: 30px;" ><img src="img/Nav_logo.gif" alt="CASP"> </p>
            </div>
         </div>
         <div class="carousel-item">

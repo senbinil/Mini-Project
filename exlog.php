@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Student/Staff Login</title>
     <style>
   @font-face{
       font-family:Montserrat;
@@ -77,7 +77,7 @@ body{
 
       
                       <!-- Name -->
-                      <input type="text" id="defaultSubscriptionFormPassword"   maxlength="6" minlength="4"  onkeypress="return onlyNumberKey(event)" name="proname"required class="form-control mb-4" placeholder="Username">
+                      <input type="text" id="defaultSubscriptionFormPassword"   maxlength="6" minlength="4"  autocomplete="off" onkeypress="return onlyNumberKey(event)" name="proname"required class="form-control mb-4" placeholder="Username">
       
                       <!-- Email -->
                       <input type="password" id="defaultSubscriptionFormEmail" name="propass" required class="form-control" placeholder="Password">

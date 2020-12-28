@@ -14,7 +14,7 @@ if(isset($_POST['cat'])&& isset($_POST['content'])){
 $cat=$_POST['cat'];$content=$_POST['content'];
 $sql1="insert into bulletin(msg_cat,msg)values('$cat','$content')";
 if($conn->query($sql1)==true){
-    //echo "inserted reload pls";
+    $_SESSION['delstat']="<script> alert(\"Message Added\");</script>";
     header("Location: " . $_SERVER['REQUEST_URI']);
     exit();
 }
@@ -130,6 +130,9 @@ echo $_SESSION['delstat'];
                         <select name="cat" class="form-control" id="">
                             <option value="init" selected disabled>Select the category of message</option>
                             <option value="result">Result</option>
+                            <option value="notice">Notification</option>
+                            <option value="event">Event</option>
+
                         </select>
                     </div>
                       <div class="col-sm-12 my-4">
@@ -148,7 +151,7 @@ echo $_SESSION['delstat'];
     $sql="select msg,msg_id from bulletin ";
     $query=mysqli_query($conn,$sql)or die(mysqli_error($conn));
     while($row=mysqli_fetch_array(($query))){
-        echo "<p class=\"list-unstyled card mr-3\">". "ID:".$row['msg_id']."<span class=\"mr-1\"></span>:-".$row['msg']."</p>";
+        echo "<p class=\"list-unstyled card pl-2 mr-3\">". "ID:".$row['msg_id']."<span class=\"mr-1\"></span>:".$row['msg']."</p>";
     }
 $conn->close();
 ?></div>

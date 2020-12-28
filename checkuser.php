@@ -11,6 +11,7 @@ $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)>0){
     $_SESSION['pass']=true;
     $_SESSION['usertype']=true;
+    $_SESSION['disable']=true;
     $_SESSION['alertlog']="User found please set your new password";
     $row=mysqli_fetch_assoc($result);
     $_SESSION['email']=$row['e_mail'];
@@ -20,6 +21,8 @@ if(mysqli_num_rows($result)>0){
 else
 {   if(mysqli_num_rows($res2)>0){
     $_SESSION['pass']=true;
+    $_SESSION['disable']=true;
+
     $_SESSION['usertype']=false;
     $_SESSION['alertlog']="User found please set your new password";
     $row=mysqli_fetch_assoc($res2);

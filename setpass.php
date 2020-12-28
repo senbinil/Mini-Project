@@ -7,6 +7,7 @@ if(isset($_SESSION['flag']))
 echo "<script>alert(\"".$_SESSION['flag']."\");</script>";
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,7 @@ echo "<script>alert(\"".$_SESSION['flag']."\");</script>";
     <link href="css/bootstrap.min.css" rel="stylesheet" >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Recovery</title>
     <style>
          @font-face{
       font-family:Montserrat;
@@ -133,13 +134,13 @@ Why  i am on this page ?</h5><br>
         <h3>Step 1:</h3>
         <form action="checkuser.php"  method="POST">
         <div class="row">
-            <label for="init" class="col-sm-3 col-form-label">Admission</label>
+            <label for="init" class="col-sm-3 col-form-label">Admission/Employee ID:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="admno"    onkeypress="return onlyNumberKey(event)" placeholder="Enter you admission number" required>
+                <input type="text" class="form-control" name="admno"  <?php if(isset($_SESSION['disable'])) echo "disabled";?> autocomplete="off"   onkeypress="return onlyNumberKey(event)" placeholder="Enter you admission number" required>
             </div>
             <label for="name" class="col-sm-3 col-form-label">Phone Number:</label>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="phone"  onkeypress="return onlyNumberKey(event)" maxlength="10" minlength="10" placeholder="Enter your number" required>
+                <input type="text" class="form-control" name="phone"   <?php if(isset($_SESSION['disable'])) echo "disabled";?> autocomplete="off"  onkeypress="return onlyNumberKey(event)" maxlength="10" minlength="10" placeholder="Enter your number" required>
             </div>
         </div>
         <center><input type="submit" class="btn btn-primary mt-3" value="Check"></center>
@@ -154,7 +155,7 @@ Why  i am on this page ?</h5><br>
                 </div>
                 <label for="von"  class="col-sm-3 col-form-label">Confirm new password:</label>
                 <div class="col-sm-3">
-                    <input type="text" name="pass" class="form-control"  id="pass2" pattern=".{8,}"  title="Eight or more characters" placeholder="Enter the same password" required>
+                    <input type="text" name="pass" class="form-control" autocomplete="off"  id="pass2" pattern=".{8,}"  title="Eight or more characters" placeholder="Enter the same password" required>
                 </div>
             </div>
             <center><input type="submit" value="Submit" onclick="return chkpass()"  class=" mt-4 btn btn-danger"> </center>
@@ -234,7 +235,7 @@ Why  i am on this page ?</h5><br>
       
         <!-- Copyright -->
         <div class="footer-copyright text-center ">© 2020 Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/"> www.senk.com</a>
+          <a href="#"> www.senk.com</a>
         </div>
         <!-- Copyright -->
       
@@ -262,7 +263,10 @@ Why  i am on this page ?</h5><br>
 </body>
 </html>
 <?php
+$_SESSION['disable']=null;
 
+if(isset($_SESSION['disable']))
+$_SESSION['disable']=false;
 if(isset($_SESSION['alertlog']))
 unset($_SESSION['alertlog']);
 if(isset($_SESSION['flag']))

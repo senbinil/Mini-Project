@@ -15,7 +15,7 @@ $row=mysqli_fetch_assoc($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $row['fname']." ".$row['lname'];?></title>
     <link href="css/font-awesome.min.css" rel="stylesheet" >
     <script src="script/jQuery-3.4.1.min.js"></script>
     <script src="script/bootstrap.bundle.min.js" ></script>
@@ -32,12 +32,12 @@ $row=mysqli_fetch_assoc($query);
             height: 100px;
         }
         body{
-       
+        background:url('img/profile.png') ;
        font-family: 'Montserrat',sans-serif;
-       background-image: url("img/profile.png");
        background-repeat: no-repeat;
        background-attachment: fixed;
        background-size: cover;
+      
       
    }
         .username{
@@ -88,9 +88,9 @@ $row=mysqli_fetch_assoc($query);
     </div>
 </nav>
 
-<div class="container-fluid my-5 py-3 cont text-white ">
+<div class="container-fluid my-5 py-3 cont  text-white">
 <h3 class="my-3">Basic Details</h3>
-
+<hr>
 <div class="row pl-2">
     <div class="col-sm-8">
         <?php
@@ -110,12 +110,15 @@ $row=mysqli_fetch_assoc($query);
       <label for="name" class="col-sm-2">Last Name:</label> <span class="col-sm-2"><?php echo $row['lname'];?></span>
         </div>
         <div class="row">
-            <label for="name" class="col-sm-2">Email-ID:</label> <span class="col-sm-2"><?php echo $row['e_mail'];?></span>
-            <label for="name" class="col-sm-2">Phone :</label> <span class="col-sm-2"><?php echo $row['gphone'];?></span>
-              </div>
+            <label for="" class="col-sm-2 col-form-label">Email-ID:</label> 
+            <span class="col-sm-4 col-form-label"><?php echo $row['e_mail'];?></span></div>
+            <div class="row"> <label for="" class="col-sm-2 col-form-label">Phone :</label> 
+            <span class="col-sm-2 col-form-label"><?php echo $row['gphone'];?></span></div>
+           
+              
               <div class="row mb-3">
               <label for="" class="col-sm-2 col-form-label">Course opted:</label>
-              <span class="col-sm-4 col-form-label"><?php  echo $rows['course_name']; ?></span>
+              <span class="col-sm-2 col-form-label"><?php  echo $rows['course_name']; ?></span>
               <label for="" class="col-sm-2 col-form-label">Course Duration:</label>
               <span class="col-sm-2 col-form-label"><?php echo $rows['no_sem']." "."Semester";?></span>
               </div>
@@ -123,6 +126,7 @@ $row=mysqli_fetch_assoc($query);
                 <h5>Note:</h5>
                 <p class="text-danger mx-5"><?php echo $row['remark']; ?></p>
             </div>
+            <hr>
               <div class="row">
                   <h3>Course details</h3>
               </div>
@@ -189,7 +193,7 @@ $payment=false;
     </div>
 
 </div>
-<div class="col-sm-4  rightmen">
+<!---<div class="col-sm-4  rightmen">
     <h3 class=" text-white" align="center">Info center</h3>
     <div class="content mx-2">
     <span><i class="fa fa-thumb-tack"></i></span>
@@ -199,88 +203,7 @@ $payment=false;
     </fieldset>
 </div>
 </div>
-</div>
-
-<!---<footer class="page-footer text-white font-small pt-4">
-
-   Footer Lin
-    <div class="container-fluid text-center text-md-left">
-  
-      <div class="row">
-  
-        <div class="col-md-6 mt-md-0 mt-3">
-  
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns to organize your footer content.</p>
-  
-        </div>
-  
-        <hr class="clearfix w-100 d-md-none pb-3">
-  
-        <div class="col-md-3 mb-md-0 mb-3">
-  
-          <h5 class="text-uppercase">Links</h5>
-   
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Link 1</a>
-            </li>
-            <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
-              <a href="#!">Link 3</a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
-            </li>
-          </ul>
-  
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-       <!-- <div class="col-md-3 mb-md-0 mb-3">
-  
-        Links
-          <h5 class="text-uppercase">Links</h5>
-  
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Link 1</a>
-            </li>
-            <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
-              <a href="#!">Link 3</a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
-            </li>
-          </ul>
-  
-        </div>
-        <!-- Grid column -->
-  
-      </div>
-      <!-- Grid row -->
-  
-    </div>
-    <!-- Footer Links -->
-  
-    <!-- Copyright 
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://mdbootstrap.com/education/bootstrap/"> www.senk.com</a>
-    </div>
-     Copyright -->
-  
-  </footer>
-  <!-- Footer-->
-
-      -->
-
-
+</div>-->
 
 </body>
 </html>

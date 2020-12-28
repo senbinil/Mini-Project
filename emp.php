@@ -1,4 +1,6 @@
 <?php
+if(!isset($_SESSION))
+session_start();
 require('dbconnect.php');
 $staffid=$_SESSION['empid'];
 $sqlstaff="select * from staffenroll where emp_id=$staffid";
@@ -24,7 +26,7 @@ $_SESSION['msg']=false;
    
 </style>
  <span class="result  text-center my-3"><h4>Result: <span class="text-danger"><?php  if(!$_SESSION['msg'])echo "Not Found"; else echo $_SESSION['msg'];  ?></span></h4></span>
-<form action="#" method="POST" class="mb-5">
+<form action="emp.php" method="POST" class="mb-5">
  <div class="row mx-1 out mt-5 py-2 border border-danger my-3">
         
 <label for="" class="col-sm-2 col-form-label">Employee ID No:</label>
@@ -110,8 +112,6 @@ if(isset($_POST['empupdate'])){
     echo "Error updating record: " . mysqli_error($conn);
 
 }
-else
-echo "none";
 
 
 mysqli_close($conn);

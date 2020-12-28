@@ -20,6 +20,13 @@ if($_GET['del']){
     $id=$_GET['del'];
     delbook($id);
 }
+if($_GET['del_in']){
+    require_once('dbconnect.php');
+    $delete_inbox="delete from suggest limit 10";
+    if(mysqli_query($conn,$delete_inbox))
+    header("location:suginbox.php");
+    
+}
 ?>
 
 

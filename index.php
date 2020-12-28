@@ -13,13 +13,14 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>College Of Applied Science , Perissery</title>
+    <link rel = "icon" href =  "img/logo.png" type = "image/x-icon"> 
     <SCRIPT type="text/javascript">
 	window.history.forward();
 	function noBack() { window.history.back(); }
 </SCRIPT>
    <link href="css/font-awesome.min.css" rel="stylesheet" >
-    <script src="script/jquery-3.4.1.min.js"></script>
+    <script src="script/jQuery-3.4.1.min.js"></script>
     <script src="script/jquery.smartmarquee.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="script/bootstrap.min.js" ></script>
@@ -388,7 +389,7 @@ margin-top: 30px;
                   <div class="col-md-4">
                     <h5 class=" " align="center">Quick Links</h5>
                     <div class="row">
-                      <div class="col-sm-8 mx-5">
+                      <div class="col-sm-12 mx-1">
                         <a href="about.php">About</a><br>
                         <a href="more.htm">More</a><br>
                         
@@ -421,11 +422,15 @@ margin-top: 30px;
     selector: '.background',
     color: ['#DA0463', '#404B69'],
   connectParticles: true,
+  maxParticles: 120,
+  speed:1,
+  sizeVariations:4,
   responsive: [{
   	breakpoint: 800,
     options: {
-    	color: '#00C9B1',
-    	maxParticles: 80,
+    	color: 'red',
+    	maxParticles: 200,
+      sizeVariations:4,
       connectParticles: false
     }
   }]

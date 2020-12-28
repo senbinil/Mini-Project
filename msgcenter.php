@@ -19,7 +19,7 @@ if(isset($_SESSION['msgstat'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Message Center</title>
     <link href="css/font-awesome.min.css" rel="stylesheet" >
     <script src="script/jQuery-3.4.1.min.js"></script>
     <script src="script/bootstrap.bundle.min.js" ></script>

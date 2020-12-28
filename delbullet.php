@@ -30,7 +30,7 @@ else
 
 }
 else
-$_SESSION['delstat']="<script> alert(\"Invlied  input\");</script>";
+$_SESSION['delstat']="<script> alert(\"Invalid  input\");</script>";
 
 
 

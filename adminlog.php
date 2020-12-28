@@ -1,5 +1,5 @@
 <?php
-//include('adminhome.php');
+session_unset();
 require('logcheck.php');
 
 //header("Location:adminlog.php");
@@ -27,7 +27,7 @@ require('logcheck.php');
 
     <nav class="navbar navbar-expand-lg  navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">CASP</a>
+            <a class="navbar-brand" href="index.php">CASP</a>
             <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-align-justify"></i>
             </button>
@@ -58,7 +58,7 @@ require('logcheck.php');
                 <span class="login10-form-title">College login</span>
         
                 <div class="wrap-input10">
-                    <input type="text"   class="input10" name="profile" placeholder="Username" id="">
+                    <input type="text"   class="input10" name="profile" autocomplete="off" placeholder="Username" id="">
                 <span class="focus-input10"></span>
                 <span class="symbol-input10">
                     <i class="fa fa-user" aria-hidden="false"></i>
@@ -100,8 +100,8 @@ require('logcheck.php');
             <div class="row">
                 <h6 class="text-center col-sm-12">Forgot Password ?</h6><hr class="col-sm-12">
                 <p class="col-sm-12 py-3">
-                    So you have forgotten an important password and now you need to reset ? Ok , to reset your password please contact college office ot head of institution with supporting 
-                    documents , if they verify the details provided genuine you will get new password from college via a post or can collect from college office.Thank you
+                    So you have forgotten an important password ? Ok , to reset your password please contact college office or head of institution with supporting 
+                    documents , if the details provided found genuine you will get new password from college via a post or can collect from college office.Thank you
                 </p>
             </div>
         </div>
